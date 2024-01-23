@@ -19,8 +19,9 @@ proc mostrarAyuda =
 fname_normalize renombra archivos y directorios restringiendo
 la variedad de signos disponibles en ellos.
 
-Requiere que se le pase un lista de rutas de archivos o carpetas.
-Nota: Usarlo con precaución, porque no pide confirmación antes de proceder a renombrar.
+Requiere que se le pase un lista de rutas de archivos y/o carpetas.
+
+NOTA: Usarlo con precaución, porque no pide confirmación antes de proceder a renombrar.
 
 Ejemplo de uso:
 fname_normalize ./documentos_a_renombrar/*
@@ -61,7 +62,7 @@ proc renombrar(pa: string, isDir: bool) =
 
   var
     (nfnom, nfext) = (fnom.normalizar, fext.normalizar)
-    npa = fdir & "/" & nfnom  & nfext
+    npa = fdir & "/" & nfnom & nfext
 
   if pa == npa:
     echo "Bien: ", pa
@@ -71,7 +72,7 @@ proc renombrar(pa: string, isDir: bool) =
     while npa.fileExists:
       # previene que se sobreescriba un archivo que tenga el mismo
       # path que el normalizado
-      npa = fdir & "/" & fnom.normalizar & "-" & $cver & fext.normalizar
+      npa = fdir & "/" & nfnom & "-" & $cver & nfext
       cver.inc
 
     echo "Renombrar: $1\ncomo: $2" % [pa, npa]
@@ -90,7 +91,7 @@ when isMainModule:
     quit()
 
   for pa in commandLineParams():
-    echo "-".repeat(10)
+    echo '-'.repeat(10)
     case pa.pathStatus:
       of pNone:
         echo "No existe: ", pa
