@@ -87,7 +87,7 @@ proc renombrar(pa: string, isDir: bool) =
 when isMainModule:
   if paramCount() == 0:
     mostrar_ayuda()
-
+    quit()
 
   for pa in commandLineParams():
     echo "-".repeat(10)
