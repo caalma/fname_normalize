@@ -65,7 +65,7 @@ proc renombrar(pa: string, isDir: bool) =
     (nfnom, nfext) = (fnom.normalizar, fext.normalizar)
     npa = fdir & "/" & nfnom & nfext
 
-  if pa == npa:
+  if (fnom & fext) == (nfnom & nfext):
     echo "Bien: ", pa
 
   else:
